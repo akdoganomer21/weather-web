@@ -19,7 +19,7 @@ const cities = [
   "Siirt", "Sinop", "Sivas", "Şanlıurfa", "Şırnak", "Tekirdağ", "Tokat", "Trabzon",
   "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"
 ];
- 
+     
 function HomePage() {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState("Ankara");
