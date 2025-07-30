@@ -22,8 +22,8 @@ const cities = [
  
 function HomePage() {
   const [weather, setWeather] = useState(null);
-  const [city, setCity] = useState("Diyarbakır");
-  const [input, setInput] = useState("Diyarbakır");
+  const [city, setCity] = useState("Ankara");
+  const [input, setInput] = useState("Ankara");
   const [filteredCities, setFilteredCities] = useState([]);
   const [loading, setLoading] = useState(false);
 
