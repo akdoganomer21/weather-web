@@ -1,11 +1,10 @@
-// src/App.js
+// src/pages/HomePage.js
 import React, { useEffect, useState } from "react";
-import { getWeather } from "./services/weatherApi";
-import CurrentWeatherCard from "./components/CurrentWeatherCard";
-import HourlyForecast from "./components/HourlyForecast";
-import DailyForecast from "./components/DailyForecast";
-import Navbar from "./components/Navbar";
-import "./App.css";
+import { getWeather } from "../services/weatherApi";
+import CurrentWeatherCard from "../components/CurrentWeatherCard";
+import HourlyForecast from "../components/HourlyForecast";
+import DailyForecast from "../components/DailyForecast";
+import "../App.css";
 
 // Türkiye şehir listesi
 const cities = [
@@ -21,14 +20,13 @@ const cities = [
   "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"
 ];
 
-function App() {
+function HomePage() {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState("Adana");
   const [input, setInput] = useState("Adana");
   const [filteredCities, setFilteredCities] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Hava durumu verisini çek
   const fetchWeather = async (cityName) => {
     setLoading(true);
     const data = await getWeather(cityName);
@@ -40,7 +38,6 @@ function App() {
     fetchWeather(city);
   }, [city]);
 
-  // Input değişince şehir önerisi getir
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInput(value);
@@ -52,54 +49,54 @@ function App() {
     setFilteredCities(value.length > 0 ? matches : []);
   };
 
-  // Şehir listesinden seçilirse
   const handleSelectCity = (selectedCity) => {
     setCity(selectedCity);
     setInput(selectedCity);
     setFilteredCities([]);
   };
 
-  // Form gönderimi
   const handleSubmit = (e) => {
     e.preventDefault();
-    const match = cities.find(
-      (c) => c.toLowerCase() === input.trim().toLowerCase()
-    );
+    const match = cities.find((c) => c.toLowerCase() === input.trim().toLowerCase());
     if (match) {
       setCity(match);
       setFilteredCities([]);
     } else {
-      alert("Geçerli bir şehir adı giriniz.");
+      alert("Lütfen geçerli bir şehir adı girin.");
     }
   };
 
   return (
     <div className="main-container">
-      <Navbar />
-      <h1 className="page-title">🌤️ {city} Hava Durumu</h1>
+      {/* HERO / ARAMA */}
+      <div className="search-section">
+        <h1 className="page-title">📍 {city} Hava Durumu</h1>
+        <p className="page-subtitle">Şehrinizi seçin, anlık ve gelecek tahminleri hemen görün!</p>
 
-      <form onSubmit={handleSubmit} className="search-form" autoComplete="off">
-        <input
-          type="text"
-          placeholder="Şehir girin"
-          value={input}
-          onChange={handleInputChange}
-        />
-        <button type="submit">Göster</button>
-      </form>
+        <form onSubmit={handleSubmit} className="search-form" autoComplete="off">
+          <input
+            type="text"
+            placeholder="Şehir girin..."
+            value={input}
+            onChange={handleInputChange}
+          />
+          <button type="submit">Göster</button>
+        </form>
 
-      {filteredCities.length > 0 && (
-        <ul className="city-suggestions">
-          {filteredCities.map((c, i) => (
-            <li key={i} onClick={() => handleSelectCity(c)}>
-              {c}
-            </li>
-          ))}
-        </ul>
-      )}
+        {filteredCities.length > 0 && (
+          <ul className="city-suggestions">
+            {filteredCities.map((c, i) => (
+              <li key={i} onClick={() => handleSelectCity(c)}>
+                {c}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
 
+      {/* SONUÇ */}
       {loading ? (
-        <p className="loading">Veriler yükleniyor...</p>
+        <p className="loading">⏳ Veriler yükleniyor...</p>
       ) : weather ? (
         <>
           <CurrentWeatherCard data={weather} />
@@ -111,10 +108,10 @@ function App() {
           )}
         </>
       ) : (
-        <p className="loading">Veri alınamadı. Şehir adı hatalı olabilir.</p>
+        <p className="loading">⚠️ Veri alınamadı. Şehir adı hatalı olabilir.</p>
       )}
     </div>
   );
 }
 
-export default App;
+export default HomePage;

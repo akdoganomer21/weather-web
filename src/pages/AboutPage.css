@@ -1,0 +1,73 @@
+.about-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    line-height: 1.8;
+    font-size: 16px;
+    color: #222;
+    background-color: #f9fcfe;
+  }
+  
+  /* Başlık */
+  .about-container h1 {
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 32px;
+    color: #0077b6;
+  }
+  
+  /* Her bölüm */
+  .about-section {
+    margin-bottom: 32px;
+  }
+  
+  .about-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: #023e8a;
+  }
+  
+  .about-section p {
+    margin: 0;
+    color: #333;
+  }
+  
+  .tech-list {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+  
+  .tech-list li {
+    margin-bottom: 6px;
+  }
+  
+  /* SVG ikon */
+  .about-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Responsive */
+  @media screen and (max-width: 600px) {
+    .about-container {
+      padding: 20px 16px;
+      font-size: 15px;
+    }
+  
+    .about-container h1 {
+      font-size: 26px;
+    }
+  
+    .about-section h2 {
+      font-size: 18px;
+    }
+  
+    .about-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  

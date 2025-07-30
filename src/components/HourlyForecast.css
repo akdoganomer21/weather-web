@@ -1,0 +1,174 @@
+.hourly-forecast {
+  margin: 40px auto;
+  max-width: 1000px;
+  padding: 0 16px;
+}
+
+.hourly-forecast h2 {
+  font-size: 22px;
+  color: #023e8a;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.forecast-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* ✅ Kart animasyonu için gecikme */
+.hour-card {
+  background: linear-gradient(to bottom, #e0f4ff, #ffffff);
+  padding: 14px 12px;
+  border-radius: 12px;
+  width: 120px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 119, 182, 0.15);
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.hour-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 119, 182, 0.2);
+}
+
+/* ✅ Kartlar sırayla gelsin */
+.hour-card:nth-child(1) { animation-delay: 0.05s; }
+.hour-card:nth-child(2) { animation-delay: 0.1s; }
+.hour-card:nth-child(3) { animation-delay: 0.15s; }
+.hour-card:nth-child(4) { animation-delay: 0.2s; }
+.hour-card:nth-child(5) { animation-delay: 0.25s; }
+.hour-card:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hour-time {
+  font-weight: 700;
+  font-size: 18px;
+  color: #0077b6;
+  margin-bottom: 8px;
+  border-bottom: 1px dashed #0077b6;
+  padding-bottom: 4px;
+}
+
+.hour-temp {
+  font-size: 20px;
+  font-weight: 600;
+  color: #023e8a;
+  margin: 6px 0 10px;
+  animation: pulseTemp 3s ease-in-out infinite;
+}
+
+@keyframes pulseTemp {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.95; }
+}
+
+.hour-humidity,
+.hour-cloud,
+.hour-rain {
+  font-size: 13px;
+  color: #495057;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  border-top: 1px solid #dbeeff;
+  padding-top: 4px;
+}
+
+.hour-humidity::before {
+  content: "Nem:";
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.hour-cloud::before {
+  content: "Bulut:";
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.hour-rain::before {
+  content: "Yağmur:";
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+/* 🔥 En Sıcak saat */
+.hour-max {
+  border: 2px solid #ff8a00;
+  box-shadow: 0 0 10px rgba(255, 138, 0, 0.5);
+}
+
+.hour-max::after {
+  content: "🔥 En Sıcak";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #ff8a00;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ❄️ En Soğuk saat */
+.hour-min {
+  border: 2px solid #00bcd4;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+}
+
+.hour-min::after {
+  content: "❄️ En Soğuk";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #00bcd4;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* 📱 Mobil uyum */
+@media (max-width: 480px) {
+  .hour-card {
+    width: 100px;
+    font-size: 13px;
+  }
+
+  .hour-time {
+    font-size: 16px;
+  }
+
+  .hour-temp {
+    font-size: 18px;
+  }
+
+  .hour-humidity,
+  .hour-cloud,
+  .hour-rain {
+    font-size: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hour-humidity::before,
+  .hour-cloud::before,
+  .hour-rain::before {
+    margin-bottom: 2px;
+  }
+}

@@ -1,0 +1,170 @@
+.daily-forecast {
+  margin-top: 40px;
+}
+
+.daily-forecast h2 {
+  text-align: center;
+  font-size: 20px;
+  color: #0077b6;
+  margin-bottom: 20px;
+}
+
+.daily-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+.daily-card {
+  background-color: #fffef2;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.daily-card:hover {
+  transform: translateY(-4px);
+}
+
+.day-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #023e8a;
+  margin-bottom: 6px;
+}
+
+.day-date {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.day-icon {
+  font-size: 30px;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.temp-range {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.temp-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.high {
+  color: #e63946;
+}
+
+.low {
+  color: #1d3557;
+}
+
+.temp-time {
+  font-size: 12px;
+  color: #777;
+}
+
+.day-desc {
+  font-size: 13px;
+  color: #444;
+  margin-top: 6px;
+}
+
+/* 🌡️ Sıcaklık bazlı renkler */
+.daily-card.hot {
+  background-color: #ff910033;
+}
+.daily-card.warm {
+  background-color: #ffe06633;
+}
+.daily-card.mild {
+  background-color: #a0d8ef33;
+}
+.daily-card.cold {
+  background-color: #b5d3e733;
+}
+
+/* 🔥 Aşırı sıcak - ateş efekti */
+.fire-anim {
+  border: 2px solid #ff6d00;
+  animation: flameGlow 0.8s infinite alternate;
+}
+
+@keyframes flameGlow {
+  0% {
+    box-shadow: 0 0 6px #ffa726;
+  }
+  100% {
+    box-shadow: 0 0 18px #ff5722;
+  }
+}
+
+/* ❄️ Aşırı soğuk - buz efekti */
+.ice-anim {
+  border: 2px solid #00acc1;
+  animation: frostPulse 2s infinite alternate;
+}
+
+@keyframes frostPulse {
+  0% {
+    box-shadow: 0 0 6px #a0e9ff;
+  }
+  100% {
+    box-shadow: 0 0 16px #00bcd4;
+  }
+}
+
+/* 🌧️ Yağışlı günler için damla efekti */
+.rainy-anim::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background: #48cae4;
+  animation: raindrop 0.8s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes raindrop {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(100px);
+    opacity: 0;
+  }
+}
+
+/* 📱 Mobil uyum */
+@media (max-width: 480px) {
+  .daily-card {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .temp-range {
+    font-size: 14px;
+  }
+
+  .day-icon {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+}

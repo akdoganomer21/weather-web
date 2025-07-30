@@ -1,0 +1,32 @@
+.notfound-container {
+    text-align: center;
+    padding: 60px 20px;
+    font-family: sans-serif;
+  }
+  
+  .notfound-container h1 {
+    font-size: 72px;
+    color: #0077b6;
+    margin-bottom: 20px;
+  }
+  
+  .notfound-container p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .notfound-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #0077b6;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .notfound-btn:hover {
+    background-color: #005f8e;
+  }
+  

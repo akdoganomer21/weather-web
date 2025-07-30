@@ -1,38 +1,175 @@
-.App {
+/* Genel Container */
+.main-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 24px 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fcfe;
+}
+
+/* Başlık */
+.page-title {
   text-align: center;
+  font-size: 30px;
+  margin: 24px 0 8px;
+  color: #0077b6;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.page-subtitle {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 24px;
+  color: #444;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Arama Formu */
+.search-form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.search-form input {
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 2px solid #0077b6;
+  border-radius: 6px;
+  min-width: 200px;
+  max-width: 300px;
+  flex: 1;
+  transition: all 0.2s ease;
+}
+
+.search-form input:focus {
+  outline: none;
+  border-color: #023e8a;
+  box-shadow: 0 0 6px rgba(0, 119, 182, 0.2);
+}
+
+.search-form button {
+  padding: 10px 18px;
+  font-size: 16px;
+  background-color: #0077b6;
   color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.search-form button:hover {
+  background-color: #005f8e;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Önerilen şehir listesi */
+.city-suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 16px;
+  max-width: 300px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.city-suggestions li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.city-suggestions li:hover {
+  background-color: #f0f8ff;
+}
+
+/* Veri yükleniyor */
+.loading {
+  text-align: center;
+  font-size: 18px;
+  margin: 32px 0;
+  color: #555;
+}
+
+/* Hava kartları - saatlik ve günlük */
+.forecast-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.forecast-card {
+  background-color: #fff8e1;
+  padding: 16px 12px;
+  border-radius: 12px;
+  text-align: center;
+  width: 100px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: 14px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.forecast-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 24px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .page-subtitle {
+    font-size: 14px;
+  }
+
+  .forecast-card {
+    width: 90px;
+    padding: 10px;
+  }
+
+  .search-form input,
+  .search-form button {
+    font-size: 14px;
   }
 }
+
+@media (max-width: 480px) {
+  .forecast-card {
+    width: 80px;
+    font-size: 12px;
+  }
+
+  .search-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-form input,
+  .search-form button {
+    width: 100%;
+  }
+}
+.forecast-card.sunny {
+  background-color: #fffbe6;
+}
+
+.forecast-card.rain {
+  background-color: #e0f7fa;
+}
+
+.forecast-card.cloudy {
+  background-color: #f0f0f0;
+}
+
