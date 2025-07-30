@@ -18,7 +18,7 @@ const cities = [
   "Muş", "Nevşehir", "Niğde", "Ordu", "Osmaniye", "Rize", "Sakarya", "Samsun",
   "Siirt", "Sinop", "Sivas", "Şanlıurfa", "Şırnak", "Tekirdağ", "Tokat", "Trabzon",
   "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"
-];
+];   
      
 function HomePage() {
   const [weather, setWeather] = useState(null);
