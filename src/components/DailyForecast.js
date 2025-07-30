@@ -36,11 +36,11 @@ const getTempClass = (day) => {
 };
 
 const DailyForecast = ({ data }) => {
-  const forecast = data.slice(1); // Bugün hariç
+  const forecast = data.slice(1); // Bugün hariç göster
 
   return (
     <div className="daily-forecast">
-      <h2>7 Günlük Tahmin</h2>
+      <h2>📆 7 Günlük Tahmin</h2>
       <div className="daily-grid">
         {forecast.map((day, index) => {
           const tempClass = getTempClass(day);
@@ -61,11 +61,11 @@ const DailyForecast = ({ data }) => {
               </div>
 
               <div className="temp-range">
-                <div className="temp-box" title={`Günün en sıcak saati: ${day.maxTime}`}>
+                <div className="temp-box" title={`En sıcak saat: ${day.maxTime}`}>
                   <span className="high">{day.max}°C</span>
                   <span className="temp-time">({day.maxTime})</span>
                 </div>
-                <div className="temp-box" title={`Günün en soğuk saati: ${day.minTime}`}>
+                <div className="temp-box" title={`En soğuk saat: ${day.minTime}`}>
                   <span className="low">{day.min}°C</span>
                   <span className="temp-time">({day.minTime})</span>
                 </div>

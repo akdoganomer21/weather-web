@@ -123,7 +123,7 @@ const weatherCodes = {
 
 export const getWeather = async (city) => {
   try {
-    const coords = cityCoords[city] || cityCoords["Adana"];
+    const coords = cityCoords[city] || cityCoords["Diyarbakır"];
     const { lat, lon } = coords;
 
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=relativehumidity_2m,wind_direction_10m,surface_pressure,cloudcover,apparent_temperature,precipitation,precipitation_probability,temperature_2m&daily=temperature_2m_max,temperature_2m_min,weathercode,sunrise,sunset&timezone=auto`;
@@ -147,9 +147,10 @@ export const getWeather = async (city) => {
       }, []);
     
       const temps = dayIndexes.map(idx => ({
-        temp: hourly.apparent_temperature[idx],
+        temp: hourly.temperature_2m[idx], // ✅ Gerçek sıcaklık
         time: hourly.time[idx]?.split("T")[1]?.slice(0, 5) || "--:--"
       }));
+      
     
       // 🔧 1. Hatalı veri varsa bile description normalize edilmeli
       if (temps.length === 0) {
@@ -183,22 +184,27 @@ export const getWeather = async (city) => {
 
 
 
-    const hourlyForecast = [];
-    for (let i = index; i < hourly.time.length && i < index + 24; i++) {
-      if (hourly.time[i]) {
-        const time = hourly.time[i].split("T")[1].slice(0, 5); // örn: "14:00"
-        hourlyForecast.push({
-          time,
-          temp: hourly.apparent_temperature[i],
-          humidity: hourly.relativehumidity_2m[i],
-          cloud: hourly.cloudcover[i],
-          rainChance: hourly.precipitation_probability[i] // ✅ bu satırı ekledik
-        });
-      }
-    }
-    
-    
+// 📌 1. Bugünün tarihi (örnek: "2025-07-30")
+const todayDate = new Date().toISOString().split("T")[0]; 
 
+// 📌 2. Sadece bugünün saatlik verilerini al
+const hourlyForecast = [];
+for (let i = 0; i < hourly.time.length; i++) {
+  if (hourly.time[i].startsWith(todayDate)) {
+    const time = hourly.time[i].split("T")[1].slice(0, 5); // "14:00"
+    hourlyForecast.push({
+      time,
+      temp: hourly.temperature_2m[i], // ❗️Hissedilen değil, termometre sıcaklığı
+      humidity: hourly.relativehumidity_2m[i],
+      cloud: hourly.cloudcover[i],
+      rainChance: hourly.precipitation_probability[i]
+    });
+  }
+}
+
+    
+    
+    const todayForecast = dailyForecast[0];
 
     return {
       temperature: current.temperature,
@@ -213,8 +219,16 @@ export const getWeather = async (city) => {
       sunset: daily.sunset[0].split("T")[1],
       description: weatherCodes[current.weathercode] || "Bilinmeyen",
       hourly: hourlyForecast,
-      daily: dailyForecast
+      daily: dailyForecast,
+    
+      // 🔥 Hissedilen sıcaklığa göre en düşük ve en yüksek:
+      minTemp: todayForecast.min,
+      maxTemp: todayForecast.max,
+      minTime: todayForecast.minTime,
+      maxTime: todayForecast.maxTime,
     };
+    
+    
     
   } catch (err) {
     console.error("API Hatası:", err);
