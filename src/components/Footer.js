@@ -11,11 +11,7 @@ const Footer = () => {
         <div className="footer-section brand">
           <h2>🌤 HavaDurumu</h2>
           <p>Türkiye genelinde hızlı ve güvenilir hava durumu tahminleri.</p>
-          <p className="footer-social">
-            <a href="#" onClick={() => window.scrollTo(0, 0)}><i className="fa-brands fa-facebook-f"></i></a>
-            <a href="#" onClick={() => window.scrollTo(0, 0)}><i className="fa-brands fa-twitter"></i></a>
-            <a href="#" onClick={() => window.scrollTo(0, 0)}><i className="fa-brands fa-instagram"></i></a>
-          </p>
+
         </div>
 
         <div className="footer-section links">
