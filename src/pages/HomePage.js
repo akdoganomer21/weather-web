@@ -1,3 +1,4 @@
+// src/pages/HomePage.js
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getWeather } from "../services/weatherApi";
@@ -7,6 +8,10 @@ import DailyForecast from "../components/DailyForecast";
 import { Helmet } from "react-helmet";
 import "../App.css";
 
+// normalizeText fonksiyonunu import et
+import { normalizeText } from "../utils/normalizeText";
+
+// Şehir listesi
 const cities = [
   "Adana", "Adıyaman", "Afyon", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın",
   "Balıkesir", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale",
@@ -25,8 +30,8 @@ function HomePage() {
   const navigate = useNavigate();
 
   const [weather, setWeather] = useState(null);
-  const [city, setCity] = useState(routeCity || "Diyarbakır");
-  const [input, setInput] = useState(routeCity || "Diyarbakır");
+  const [city, setCity] = useState("Diyarbakır");
+  const [input, setInput] = useState("Diyarbakır");
   const [filteredCities, setFilteredCities] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -38,14 +43,17 @@ function HomePage() {
   };
 
   useEffect(() => {
-    if (routeCity && cities.includes(routeCity.charAt(0).toUpperCase() + routeCity.slice(1))) {
-      setCity(routeCity);
-      setInput(routeCity);
-      fetchWeather(routeCity);
+    const normalizedParam = normalizeText(routeCity || "Diyarbakır");
+    const matchedCity = cities.find(
+      (c) => normalizeText(c) === normalizedParam
+    );
+
+    if (matchedCity) {
+      setCity(matchedCity);
+      setInput(matchedCity);
+      fetchWeather(matchedCity);
     } else {
-      setCity("Diyarbakır");
-      setInput("Diyarbakır");
-      fetchWeather("Diyarbakır");
+      navigate("/sehir/diyarbakir");
     }
   }, [routeCity]);
 
@@ -53,21 +61,23 @@ function HomePage() {
     const value = e.target.value;
     setInput(value);
     const matches = cities.filter((c) =>
-      c.toLowerCase().startsWith(value.toLowerCase())
+      normalizeText(c).startsWith(normalizeText(value))
     );
     setFilteredCities(value.length > 0 ? matches : []);
   };
 
   const handleSelectCity = (selectedCity) => {
-    navigate(`/sehir/${selectedCity.toLowerCase()}`);
+    navigate(`/sehir/${normalizeText(selectedCity)}`);
     setFilteredCities([]);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const match = cities.find((c) => c.toLowerCase() === input.trim().toLowerCase());
+    const match = cities.find(
+      (c) => normalizeText(c) === normalizeText(input.trim())
+    );
     if (match) {
-      navigate(`/sehir/${match.toLowerCase()}`);
+      navigate(`/sehir/${normalizeText(match)}`);
     } else {
       alert("Lütfen geçerli bir şehir adı girin.");
     }
