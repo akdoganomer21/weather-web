@@ -1,10 +1,11 @@
-// src/pages/HomePage.js
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { getWeather } from "../services/weatherApi";
 import CurrentWeatherCard from "../components/CurrentWeatherCard";
 import HourlyForecast from "../components/HourlyForecast";
 import DailyForecast from "../components/DailyForecast";
 import "../App.css";
+
 
 // Türkiye şehir listesi
 const cities = [
@@ -19,7 +20,6 @@ const cities = [
   "Siirt", "Sinop", "Sivas", "Şanlıurfa", "Şırnak", "Tekirdağ", "Tokat", "Trabzon",
   "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"
 ];   
-     
 function HomePage() {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState("Diyarbakır");
@@ -45,7 +45,6 @@ function HomePage() {
     const matches = cities.filter((c) =>
       c.toLowerCase().startsWith(value.toLowerCase())
     );
-
     setFilteredCities(value.length > 0 ? matches : []);
   };
 
@@ -68,6 +67,10 @@ function HomePage() {
 
   return (
     <div className="main-container">
+      <Helmet>
+        <title>{city} Hava Durumu | Ana Sayfa</title>
+      </Helmet>
+
       {/* HERO / ARAMA */}
       <div className="search-section">
         <h1 className="page-title">📍 {city} Hava Durumu Bilgileri</h1>

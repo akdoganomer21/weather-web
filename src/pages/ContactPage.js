@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import "./ContactPage.css";
 
 const ContactPage = () => {
@@ -20,7 +21,6 @@ const ContactPage = () => {
     setSuccess(true);
     setProgress(100);
 
-    // 5 saniyede kaybolur
     let interval = setInterval(() => {
       setProgress((prev) => {
         if (prev <= 0) {
@@ -32,60 +32,65 @@ const ContactPage = () => {
       });
     }, 100);
 
-    // Formu temizle
     setFormData({ name: "", email: "", message: "" });
   };
 
   return (
-    <div className="contact-container">
-      <h2>İletişim</h2>
-      <p>
-        📩 Bizimle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.
-        Her türlü öneri, geri bildirim ve teknik destek için buradayız!
-      </p>
+    <>
+      <Helmet>
+        <title>İletişim | HavaDurumu</title>
+      </Helmet>
 
-      <div className="contact-info">
-        <p><strong>📧 E-posta:</strong> akdoganomer42621@gmail.com</p>
-        <p><strong>📞 Telefon:</strong> +90 537 204 01 91</p>
-        <p><strong>📍 Adres:</strong> Mersin Teknokent, Türkiye</p>
-      </div>
+      <div className="contact-container">
+        <h2>İletişim</h2>
+        <p>
+          📩 Bizimle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.
+          Her türlü öneri, geri bildirim ve teknik destek için buradayız!
+        </p>
 
-      {success && (
-        <div className="success-message">
-          <div className="progress-bar" style={{ width: `${progress}%` }}></div>
-          ✅ Mesajınız iletildi!
+        <div className="contact-info">
+          <p><strong>📧 E-posta:</strong> akdoganomer42621@gmail.com</p>
+          <p><strong>📞 Telefon:</strong> +90 537 204 01 91</p>
+          <p><strong>📍 Adres:</strong> Mersin Teknokent, Türkiye</p>
         </div>
-      )}
 
-      <h3>Bize Yazın</h3>
-      <form className="contact-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Adınız"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          placeholder="E-posta"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          placeholder="Mesajınız"
-          name="message"
-          rows="5"
-          value={formData.message}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Gönder</button>
-      </form>
-    </div>
+        {success && (
+          <div className="success-message">
+            <div className="progress-bar" style={{ width: `${progress}%` }}></div>
+            ✅ Mesajınız iletildi!
+          </div>
+        )}
+
+        <h3>Bize Yazın</h3>
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Adınız"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="email"
+            placeholder="E-posta"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <textarea
+            placeholder="Mesajınız"
+            name="message"
+            rows="5"
+            value={formData.message}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">Gönder</button>
+        </form>
+      </div>
+    </>
   );
 };
 
