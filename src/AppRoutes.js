@@ -14,6 +14,7 @@ function AppRoutes() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/sehir/:city" element={<HomePage />} />
         <Route path="/hakkimizda" element={<AboutPage />} />
         <Route path="/iletisim" element={<ContactPage />} />
         <Route path="*" element={<NotFoundPage />} />

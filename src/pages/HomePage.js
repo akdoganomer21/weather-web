@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import { useParams, useNavigate } from "react-router-dom";
 import { getWeather } from "../services/weatherApi";
 import CurrentWeatherCard from "../components/CurrentWeatherCard";
 import HourlyForecast from "../components/HourlyForecast";
 import DailyForecast from "../components/DailyForecast";
+import { Helmet } from "react-helmet";
 import "../App.css";
 
-
-// Türkiye şehir listesi
 const cities = [
   "Adana", "Adıyaman", "Afyon", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın",
   "Balıkesir", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale",
@@ -19,11 +18,15 @@ const cities = [
   "Muş", "Nevşehir", "Niğde", "Ordu", "Osmaniye", "Rize", "Sakarya", "Samsun",
   "Siirt", "Sinop", "Sivas", "Şanlıurfa", "Şırnak", "Tekirdağ", "Tokat", "Trabzon",
   "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"
-];   
+];
+
 function HomePage() {
+  const { city: routeCity } = useParams();
+  const navigate = useNavigate();
+
   const [weather, setWeather] = useState(null);
-  const [city, setCity] = useState("Diyarbakır");
-  const [input, setInput] = useState("Diyarbakır");
+  const [city, setCity] = useState(routeCity || "Diyarbakır");
+  const [input, setInput] = useState(routeCity || "Diyarbakır");
   const [filteredCities, setFilteredCities] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -35,13 +38,20 @@ function HomePage() {
   };
 
   useEffect(() => {
-    fetchWeather(city);
-  }, [city]);
+    if (routeCity && cities.includes(routeCity.charAt(0).toUpperCase() + routeCity.slice(1))) {
+      setCity(routeCity);
+      setInput(routeCity);
+      fetchWeather(routeCity);
+    } else {
+      setCity("Diyarbakır");
+      setInput("Diyarbakır");
+      fetchWeather("Diyarbakır");
+    }
+  }, [routeCity]);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInput(value);
-
     const matches = cities.filter((c) =>
       c.toLowerCase().startsWith(value.toLowerCase())
     );
@@ -49,8 +59,7 @@ function HomePage() {
   };
 
   const handleSelectCity = (selectedCity) => {
-    setCity(selectedCity);
-    setInput(selectedCity);
+    navigate(`/sehir/${selectedCity.toLowerCase()}`);
     setFilteredCities([]);
   };
 
@@ -58,8 +67,7 @@ function HomePage() {
     e.preventDefault();
     const match = cities.find((c) => c.toLowerCase() === input.trim().toLowerCase());
     if (match) {
-      setCity(match);
-      setFilteredCities([]);
+      navigate(`/sehir/${match.toLowerCase()}`);
     } else {
       alert("Lütfen geçerli bir şehir adı girin.");
     }
@@ -71,7 +79,6 @@ function HomePage() {
         <title>{city} Hava Durumu | Ana Sayfa</title>
       </Helmet>
 
-      {/* HERO / ARAMA */}
       <div className="search-section">
         <h1 className="page-title">📍 {city} Hava Durumu Bilgileri</h1>
         <p className="page-subtitle">Şehrinizi seçin, anlık durumu ve haftalık tahmini hemen öğrenin.</p>
@@ -97,7 +104,6 @@ function HomePage() {
         )}
       </div>
 
-      {/* SONUÇ */}
       {loading ? (
         <p className="loading">⏳ Veriler yükleniyor...</p>
       ) : weather ? (
