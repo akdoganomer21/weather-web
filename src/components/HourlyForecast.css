@@ -161,7 +161,7 @@
   .hour-humidity,
   .hour-cloud,
   .hour-rain {
-    font-size: 12px;
+    font-size: 12px; 
     flex-direction: column;
     align-items: flex-start;
   }
