@@ -70,8 +70,8 @@ function HomePage() {
     <div className="main-container">
       {/* HERO / ARAMA */}
       <div className="search-section">
-        <h1 className="page-title">📍 {city} Hava Durumu</h1>
-        <p className="page-subtitle">Şehrinizi seçin, anlık ve gelecek tahminleri hemen görün!</p>
+        <h1 className="page-title">📍 {city} Hava Durumu Bilgileri</h1>
+        <p className="page-subtitle">Şehrinizi seçin, anlık durumu ve haftalık tahmini hemen öğrenin.</p>
 
         <form onSubmit={handleSubmit} className="search-form" autoComplete="off">
           <input
