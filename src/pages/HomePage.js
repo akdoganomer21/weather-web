@@ -119,16 +119,54 @@ function HomePage() {
       <div className="search-section">
         <h1 className="page-title">📍 {city} Hava Durumu Bilgileri</h1>
         <p className="page-subtitle">Şehrinizi seçin, anlık durumu ve haftalık tahmini hemen öğrenin.</p>
-
-        <form onSubmit={handleSubmit} className="search-form" autoComplete="off">
-          <input
-            type="text"
-            placeholder="Şehir girin..."
-            value={input}
-            onChange={handleInputChange}
-          />
-          <button type="submit">Göster</button>
+        
+        <form
+  onSubmit={handleSubmit}
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "12px",
+    width: "100%",
+    maxWidth: "500px",
+    margin: "0 auto",
+  }}
+  autoComplete="off"
+>
+  <input
+    type="text"
+    placeholder="Şehir girin..."
+    value={input}
+    onChange={handleInputChange}
+    style={{
+      padding: "14px 20px",
+      fontSize: "18px",           // Şehir adı büyük
+      border: "2px solid #0077b6",
+      borderRadius: "8px",
+      width: "100%",
+      maxWidth: "400px",
+      textAlign: "center",        // Yazıyı ortala
+      boxShadow: "0 2px 6px rgba(0,119,182,0.1)",
+    }}
+  />
+  <button
+    type="submit"
+    style={{
+      padding: "14px 20px",
+      fontSize: "16px",
+      backgroundColor: "#0077b6",
+      color: "#fff",
+      border: "none",
+      borderRadius: "8px",
+      width: "100%",
+      maxWidth: "400px",
+      cursor: "pointer",
+    }}
+  >
+    Göster
+  </button>
         </form>
+
 
         {filteredCities.length > 0 && (
           <ul className="city-suggestions">

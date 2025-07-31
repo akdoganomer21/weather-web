@@ -9,6 +9,7 @@
 
 /* Başlık */
 .page-title {
+  word-break: break-word;
   text-align: center;
   font-size: 30px;
   margin: 24px 0 8px;
@@ -28,77 +29,77 @@
 /* Arama Formu */
 .search-form {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .search-form input {
   padding: 14px 20px;
-  font-size: 16px;
+  font-size: 17px;
   border: 2px solid #0077b6;
-  border-radius: 10px;
-  min-width: 240px;
-  max-width: 300px;
-  flex: 1;
-  transition: all 0.3s ease;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
   outline: none;
-  box-shadow: 0 2px 6px rgba(0, 119, 182, 0.15);
-  
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 119, 182, 0.1);
+  display: block;
+  margin: 0 auto;
 }
 
 .search-form input:focus {
-  outline: none;
   border-color: #023e8a;
-  box-shadow: 0 0 6px rgba(0, 119, 182, 0.2);
+  box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.2);
 }
 
 .search-form button {
-  padding: 14px 24px;
+  padding: 14px 20px;
   font-size: 16px;
   background-color: #0077b6;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
   cursor: pointer;
-  flex-shrink: 0;
   transition: background-color 0.34s ease;
 }
 
 .search-form button:hover {
-  background-color: #005f8e;
+  background-color: #023e8a;
 }
 
-/* Önerilen şehir listesi */
+/* Şehir Önerileri */
 .city-suggestions {
   list-style: none;
   padding: 0;
-  max-width: 300px;
-  background-color: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid #ddd;
-  margin-top: 12px;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 12px auto 0;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .city-suggestions li {
-  padding: 10px;
+  padding: 10px 16px;
   border-bottom: 1px solid #eee;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .city-suggestions li:hover {
-  background-color: #f0f8ff;
+  background-color: #e0f7ff;
 }
 
-/* Veri yükleniyor */
+/* Yükleniyor mesajı */
 .loading {
   text-align: center;
   font-size: 18px;
@@ -106,7 +107,7 @@
   color: #555;
 }
 
-/* Hava kartları - saatlik ve günlük */
+/* Hava Kartları */
 .forecast-grid {
   display: flex;
   flex-wrap: wrap;
@@ -131,6 +132,24 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* Duruma özel kart renkleri */
+.forecast-card.sunny {
+  background-color: #fffbe6;
+}
+.forecast-card.rain {
+  background-color: #e0f7fa;
+}
+.forecast-card.cloudy {
+  background-color: #f0f0f0;
+}
+
+/* Arama bölümü container */
+.search-section {
+  text-align: center;
+  padding: 40px 20px 20px;
+  margin-bottom: 32px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .page-title {
@@ -144,11 +163,17 @@
   .forecast-card {
     width: 90px;
     padding: 10px;
+    font-size: 13px;
   }
 
-  .search-form input,
+  .search-form input {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
   .search-form button {
-    font-size: 14px;
+    padding: 10px 14px;
+    font-size: 13px;
   }
 }
 
@@ -156,6 +181,11 @@
   .forecast-card {
     width: 80px;
     font-size: 12px;
+  }
+
+  .search-form button {
+    padding: 12px 16px;
+    font-size: 14px;
   }
 
   .search-form {
@@ -168,42 +198,3 @@
     width: 100%;
   }
 }
-.forecast-card.sunny {
-  background-color: #fffbe6;
-}
-
-.forecast-card.rain {
-  background-color: #e0f7fa;
-}
-
-.forecast-card.cloudy {
-  background-color: #f0f0f0;
-}
-
-/* Arama bölümü genel */
-.search-section {
-  text-align: center;
-  padding: 40px 20px 20px;
-  margin-bottom: 32px;
-}
-
-
-.search-form input:focus {
-  border-color: #023e8a;
-  box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.2);
-}
-
-.search-form button:hover {
-  background-color: #023e8a;
-}
-
-.city-suggestions li {
-  padding: 10px 16px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.city-suggestions li:hover {
-  background-color: #e0f7ff;
-}
-

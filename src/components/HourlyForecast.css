@@ -186,8 +186,9 @@
   }
 }
 .hour-group-title {
-  font-size: 18px;
+  font-size: 17.5px;
   color: #005f8e;
   margin: 24px 0 10px;
   padding-left: 12px;
+  text-align: center;
 }
