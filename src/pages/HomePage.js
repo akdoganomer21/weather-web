@@ -43,11 +43,13 @@ function HomePage() {
   };
 
   useEffect(() => {
-    const normalizedParam = normalizeText(routeCity || "Diyarbakır");
+    if (!routeCity) return;
+  
+    const normalizedParam = normalizeText(routeCity);
     const matchedCity = cities.find(
       (c) => normalizeText(c) === normalizedParam
     );
-
+  
     if (matchedCity) {
       setCity(matchedCity);
       setInput(matchedCity);
@@ -56,6 +58,7 @@ function HomePage() {
       navigate("/sehir/diyarbakir");
     }
   }, [routeCity]);
+  
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -118,6 +121,8 @@ function HomePage() {
         <p className="loading">⏳ Veriler yükleniyor...</p>
       ) : weather ? (
         <>
+            {console.log("📦 Weather state güncellendi:", weather)}
+            {console.log("🌆 Seçilen şehir:", city)}
           <CurrentWeatherCard data={weather} />
           {Array.isArray(weather.hourly) && weather.hourly.length > 0 && (
             <HourlyForecast data={weather.hourly} />
