@@ -7,23 +7,12 @@ import HourlyForecast from "../components/HourlyForecast";
 import DailyForecast from "../components/DailyForecast";
 import { Helmet } from "react-helmet";
 import "../App.css";
-
 // normalizeText fonksiyonunu import et
 import { normalizeText } from "../utils/normalizeText";
+import { cities } from "../data/cities";
 
-// Şehir listesi
-const cities = [
-  "Adana", "Adıyaman", "Afyon", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın",
-  "Balıkesir", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale",
-  "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Düzce", "Edirne", "Elazığ", "Erzincan",
-  "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkari", "Hatay",
-  "Iğdır", "Isparta", "İstanbul", "İzmir", "Kahramanmaraş", "Karabük", "Karaman",
-  "Kars", "Kastamonu", "Kayseri", "Kırıkkale", "Kırklareli", "Kırşehir", "Kilis",
-  "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Mardin", "Mersin", "Muğla",
-  "Muş", "Nevşehir", "Niğde", "Ordu", "Osmaniye", "Rize", "Sakarya", "Samsun",
-  "Siirt", "Sinop", "Sivas", "Şanlıurfa", "Şırnak", "Tekirdağ", "Tokat", "Trabzon",
-  "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"
-];
+
+
 
 function HomePage() {
   const { city: routeCity } = useParams();
@@ -96,23 +85,24 @@ function HomePage() {
 
   return (
     <div className="main-container">
-<Helmet>
-  <title>Hava Durumu | Türkiye Genelinde Tahmin</title>
-  <meta name="description" content="Türkiye genelinde anlık, saatlik ve haftalık hava durumu tahminlerini modern arayüzle keşfedin." />
+    <Helmet>
+  <title>{city} Hava Durumu | Anlık, Saatlik ve Haftalık Tahmin</title>
+  <meta name="description" content={`${city} için hava durumu tahminlerini anlık, saatlik ve haftalık olarak öğrenin.`} />
 
   {/* Open Graph */}
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Hava Durumu | Ana Sayfa" />
-  <meta property="og:description" content="Türkiye genelinde hava durumu tahminleri. Anlık, saatlik ve haftalık verilerle bilgi alın." />
+  <meta property="og:title" content={`${city} Hava Durumu | Hızlı Tahmin`} />
+  <meta property="og:description" content={`${city} hava durumu: detaylı, anlık ve haftalık bilgiler burada.`} />
   <meta property="og:image" content="https://seninsite.netlify.app/image.jpeg" />
-  <meta property="og:url" content="https://seninsite.netlify.app/" />
+  <meta property="og:url" content={`https://seninsite.netlify.app/sehir/${normalizeText(city)}`} />
 
   {/* Twitter */}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Hava Durumu | Türkiye Genelinde Tahmin" />
-  <meta name="twitter:description" content="Modern arayüzle hava durumu tahminlerini inceleyin." />
+  <meta name="twitter:title" content={`${city} Hava Durumu | Türkiye Geneli`} />
+  <meta name="twitter:description" content={`Türkiye genelinde ${city} için güncel hava durumu verileri.`} />
   <meta name="twitter:image" content="https://seninsite.netlify.app/image.jpeg" />
-</Helmet>
+    </Helmet>
+
 
 
 
@@ -183,8 +173,6 @@ function HomePage() {
         <p className="loading">⏳ Veriler yükleniyor...</p>
       ) : weather ? (
         <>
-            {console.log("📦 Weather state güncellendi:", weather)}
-            {console.log("🌆 Seçilen şehir:", city)}
           <CurrentWeatherCard data={weather} />
           {Array.isArray(weather.hourly) && weather.hourly.length > 0 && (
             <HourlyForecast data={weather.hourly} />
