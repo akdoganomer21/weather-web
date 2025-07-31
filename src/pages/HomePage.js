@@ -89,22 +89,23 @@ function HomePage() {
   return (
     <div className="main-container">
 <Helmet>
-  <title>Hava Durumu | Ana Sayfa</title>
-  <meta name="description" content="Türkiye genelinde hava durumu tahminleri. Anlık, saatlik ve haftalık verilerle detaylı bilgi alın." />
+  <title>Hava Durumu | Türkiye Genelinde Tahmin</title>
+  <meta name="description" content="Türkiye genelinde anlık, saatlik ve haftalık hava durumu tahminlerini modern arayüzle keşfedin." />
 
   {/* Open Graph */}
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Hava Durumu | Ana Sayfa" />
   <meta property="og:description" content="Türkiye genelinde hava durumu tahminleri. Anlık, saatlik ve haftalık verilerle bilgi alın." />
-  <meta property="og:image" content="http://localhost:3000/image.jpeg" />
-  <meta property="og:url" content="http://localhost:3000/" />
+  <meta property="og:image" content="https://seninsite.netlify.app/image.jpeg" />
+  <meta property="og:url" content="https://seninsite.netlify.app/" />
 
-  {/* Twitter Card */}
+  {/* Twitter */}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Hava Durumu | Türkiye Genelinde Anlık Bilgiler" />
-  <meta name="twitter:description" content="Hava durumu tahminlerini modern arayüzle keşfedin." />
-  <meta name="twitter:image" content="http://localhost:3000/image.jpeg" />
+  <meta name="twitter:title" content="Hava Durumu | Türkiye Genelinde Tahmin" />
+  <meta name="twitter:description" content="Modern arayüzle hava durumu tahminlerini inceleyin." />
+  <meta name="twitter:image" content="https://seninsite.netlify.app/image.jpeg" />
 </Helmet>
+
 
 
       <div className="search-section">
