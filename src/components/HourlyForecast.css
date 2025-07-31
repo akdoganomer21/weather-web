@@ -177,7 +177,7 @@
     font-size: 11px; 
     flex-direction: column;
     align-items: flex-start;
-  }
+  } 
 
   .hour-humidity::before,
   .hour-cloud::before,
