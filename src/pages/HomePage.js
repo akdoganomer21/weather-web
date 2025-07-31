@@ -57,7 +57,7 @@ function HomePage() {
     } else {
       navigate("/sehir/diyarbakir");
     }
-  }, [routeCity]);
+  }, [routeCity, navigate]);
   
 
   const handleInputChange = (e) => {
