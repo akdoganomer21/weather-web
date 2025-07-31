@@ -43,9 +43,14 @@ function HomePage() {
   };
 
   useEffect(() => {
-    if (!routeCity) return;
+    const normalizedParam = normalizeText(routeCity || "");
   
-    const normalizedParam = normalizeText(routeCity);
+    if (!routeCity) {
+      // Eğer URL boşsa, Diyarbakır’a yönlendir
+      navigate("/sehir/diyarbakir", { replace: true });
+      return;
+    }
+  
     const matchedCity = cities.find(
       (c) => normalizeText(c) === normalizedParam
     );
@@ -53,11 +58,14 @@ function HomePage() {
     if (matchedCity) {
       setCity(matchedCity);
       setInput(matchedCity);
-      fetchWeather(matchedCity);
+      fetchWeather(matchedCity);  // ⬅️ Bu garanti
     } else {
-      navigate("/sehir/diyarbakir");
+      navigate("/sehir/diyarbakir", { replace: true });
     }
   }, [routeCity, navigate]);
+  
+  
+  
   
 
   const handleInputChange = (e) => {
