@@ -1,11 +1,14 @@
 // src/App.js
 import React, { useEffect, useState } from "react";
 import { getWeather } from "./services/weatherApi";
-import CurrentWeatherCard from "./components/CurrentWeatherCard";
-import HourlyForecast from "./components/HourlyForecast";
-import DailyForecast from "./components/DailyForecast";
 import Navbar from "./components/Navbar";
+const CurrentWeatherCard = lazy(() => import("./components/CurrentWeatherCard"));
+const HourlyForecast = lazy(() => import("./components/HourlyForecast"));
+const DailyForecast = lazy(() => import("./components/DailyForecast"));
+
 import "./App.css";
+import React, { useEffect, useState, lazy, Suspense } from "react";
+
 
 // Türkiye şehir listesi
 const cities = [
@@ -98,21 +101,24 @@ function App() {
         </ul>
       )}
 
-      {loading ? (
-        <p className="loading">Veriler yükleniyor...</p>
-      ) : weather ? (
-        <>
-          <CurrentWeatherCard data={weather} />
-          {Array.isArray(weather.hourly) && weather.hourly.length > 0 && (
-            <HourlyForecast data={weather.hourly} />
-          )}
-          {Array.isArray(weather.daily) && weather.daily.length > 0 && (
-            <DailyForecast data={weather.daily} />
-          )}
-        </>
-      ) : (
-        <p className="loading">Veri alınamadı. Şehir adı hatalı olabilir.</p>
+{loading ? (
+  <p className="loading">Veriler yükleniyor...</p>
+) : weather ? (
+  <Suspense fallback={<p className="loading">Bileşenler yükleniyor...</p>}>
+    <>
+      <CurrentWeatherCard data={weather} />
+      {Array.isArray(weather.hourly) && weather.hourly.length > 0 && (
+        <HourlyForecast data={weather.hourly} />
       )}
+      {Array.isArray(weather.daily) && weather.daily.length > 0 && (
+        <DailyForecast data={weather.daily} />
+      )}
+    </>
+  </Suspense>
+) : (
+  <p className="loading">Veri alınamadı. Şehir adı hatalı olabilir.</p>
+)}
+
     </div>
   );
 }
