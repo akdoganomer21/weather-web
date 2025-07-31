@@ -2,6 +2,7 @@
 import React from "react";
 import "./CurrentWeatherCard.css";
 
+// Hava açıklamaları çeviri
 const descriptionMap = {
   "Clear": "Açık",
   "Partly cloudy": "Parçalı bulutlu",
@@ -14,11 +15,13 @@ const descriptionMap = {
   "Fog": "Sisli"
 };
 
+// Pusula yönü hesapla
 const getCompass = (deg) => {
   const directions = ["K", "KD", "D", "GD", "G", "GB", "B", "KB"];
   return directions[Math.round(deg / 45) % 8];
 };
 
+// SVG ikonlar
 const SunriseSVG = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#f4a261" viewBox="0 0 24 24" style={{ marginRight: 6 }}>
     <path d="M12 3l3 3h-2v4h-2V6H9l3-3zm0 15c2.761 0 5-2.239 5-5h2a7 7 0 0 1-14 0h2c0 2.761 2.239 5 5 5z" />
@@ -31,6 +34,7 @@ const SunsetSVG = () => (
   </svg>
 );
 
+// Hava durumu SVG ikon
 const getWeatherIconSvg = (desc) => {
   const style = { marginRight: 6 };
   switch (desc) {
@@ -82,25 +86,31 @@ const CurrentWeatherCard = ({ data }) => {
   const windDirectionLabel =
     windDirection !== undefined ? `${windDirection}° (${getCompass(windDirection)})` : "-";
 
+  const currentTime = new Date().toLocaleTimeString("tr-TR", {
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+
   return (
     <div className="current-weather-card">
-      <h2>🌡️ Anlık Hava Durumu</h2>
+      <div className="current-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+        <h2 style={{ margin: 0 }}>🌡️ Anlık Hava Durumu</h2>
+        <span style={{ fontSize: "20px", color: "blue" }}>SAAT: {currentTime}</span>
+      </div>
+
       <div className="weather-grid">
         <div className="weather-item">
           <span className="label">Sıcaklık:</span>
           <span className="value">{temperature !== undefined ? `${temperature}°C` : "-"}</span>
         </div>
-
         <div className="weather-item">
           <span className="label">Hissedilen:</span>
           <span className="value">{apparentTemp !== undefined ? `${apparentTemp}°C` : "-"}</span>
         </div>
-
         <div className="weather-item">
           <span className="label">Rüzgar:</span>
           <span className="value">{formattedWind}</span>
         </div>
-
         <div className="weather-item">
           <span className="label">Rüzgar Yönü:</span>
           <span className="value">
@@ -110,47 +120,38 @@ const CurrentWeatherCard = ({ data }) => {
             </svg>
           </span>
         </div>
-
         <div className="weather-item humidity" style={{ "--humidity": humidity || 0 }}>
           <span className="label">Nem:</span>
           <span className="value">{humidity !== undefined ? `${humidity}%` : "-"}</span>
         </div>
-
         <div className="weather-item">
           <span className="label">Basınç:</span>
           <span className="value">{pressure !== undefined ? `${pressure} hPa` : "-"}</span>
         </div>
-
         <div className="weather-item">
           <span className="label">Bulutluluk:</span>
           <span className="value">{cloud !== undefined ? `${cloud}%` : "-"}</span>
         </div>
-
         <div className="weather-item">
           <span className="label">Yağış:</span>
           <span className="value">{rain !== undefined ? `${rain} mm` : "-"}</span>
         </div>
-
         <div className="weather-item">
           <span className="label"><SunriseSVG />Gün Doğumu:</span>
           <span className="value">{sunrise || "-"}</span>
         </div>
-
         <div className="weather-item">
           <span className="label"><SunsetSVG />Gün Batımı:</span>
           <span className="value">{sunset || "-"}</span>
         </div>
-
         <div className="weather-item">
           <span className="label">En Düşük:</span>
           <span className="value">{minTemp !== undefined ? `${minTemp}°C (${minTime})` : "-"}</span>
         </div>
-
         <div className="weather-item">
           <span className="label">En Yüksek:</span>
           <span className="value">{maxTemp !== undefined ? `${maxTemp}°C (${maxTime})` : "-"}</span>
         </div>
-
         <div className="weather-item">
           <span className="label">Durum:</span>
           <span className="value">

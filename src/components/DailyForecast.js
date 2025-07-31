@@ -40,7 +40,7 @@ const DailyForecast = ({ data }) => {
 
   return (
     <div className="daily-forecast">
-      <h2>📆 7 Günlük Tahmin</h2>
+      <h2>📆 Haftalık Hava Durumu Tahmini</h2>
       <div className="daily-grid">
         {forecast.map((day, index) => {
           const tempClass = getTempClass(day);

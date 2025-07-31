@@ -22,10 +22,18 @@ const HourlyForecast = ({ data }) => {
     if (hour.temp === minTemp) classes += " hour-min";
     return classes;
   };
+  const getTodayName = () => {
+    const days = [
+      "Pazar", "Pazartesi", "Salı", "Çarşamba",
+      "Perşembe", "Cuma", "Cumartesi"
+    ];
+    const today = new Date().getDay();
+    return days[today];
+  };
 
   return (
     <div className="hourly-forecast">
-      <h2>📊 24 Saatlik Hava Tahmini</h2>
+      <h2>📊 {getTodayName()} Günü Saatlik Hava Durumu</h2>
 
       <h3 className="hour-group-title">🌙 Öğleden Önce (00:00 - 11:59) Hava Durumu</h3>
       <div className="forecast-row">
