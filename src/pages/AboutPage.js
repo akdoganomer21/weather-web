@@ -6,9 +6,18 @@ import "./AboutPage.css";
 const AboutPage = () => {
   return (
     <>
-      <Helmet>
-        <title>Hakkımızda | HavaDurumu</title>
-      </Helmet>
+<Helmet>
+  <title>Hakkımızda | Hava Durumu</title>
+  <meta name="description" content="Hava Durumu projesi hakkında bilgi alın. Misyonumuz ve ekibimizle tanışın." />
+  <meta property="og:title" content="Hakkımızda | Hava Durumu" />
+  <meta property="og:description" content="Hava Durumu projesi, modern tahmin sistemiyle şehir şehir hava durumunu ayağınıza getirir." />
+  <meta property="og:image" content="http://localhost:3000/image.jpeg" />
+  <meta property="og:url" content="http://localhost:3000/hakkimizda" />
+  <meta name="twitter:title" content="Hakkımızda | Hava Durumu" />
+  <meta name="twitter:description" content="Hava Durumu ekibi, size en güncel hava bilgilerini sunmak için çalışıyor." />
+  <meta name="twitter:image" content="http://localhost:3000/image.jpeg" />
+</Helmet>
+
 
       <div className="about-container">
         <h1>ℹ️ Hakkımızda</h1>

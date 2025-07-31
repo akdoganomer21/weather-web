@@ -88,9 +88,24 @@ function HomePage() {
 
   return (
     <div className="main-container">
-      <Helmet>
-        <title>{city} Hava Durumu | Ana Sayfa</title>
-      </Helmet>
+<Helmet>
+  <title>Hava Durumu | Ana Sayfa</title>
+  <meta name="description" content="Türkiye genelinde hava durumu tahminleri. Anlık, saatlik ve haftalık verilerle detaylı bilgi alın." />
+
+  {/* Open Graph */}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Hava Durumu | Ana Sayfa" />
+  <meta property="og:description" content="Türkiye genelinde hava durumu tahminleri. Anlık, saatlik ve haftalık verilerle bilgi alın." />
+  <meta property="og:image" content="http://localhost:3000/image.jpeg" />
+  <meta property="og:url" content="http://localhost:3000/" />
+
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hava Durumu | Türkiye Genelinde Anlık Bilgiler" />
+  <meta name="twitter:description" content="Hava durumu tahminlerini modern arayüzle keşfedin." />
+  <meta name="twitter:image" content="http://localhost:3000/image.jpeg" />
+</Helmet>
+
 
       <div className="search-section">
         <h1 className="page-title">📍 {city} Hava Durumu Bilgileri</h1>

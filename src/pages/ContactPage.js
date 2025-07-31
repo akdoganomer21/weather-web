@@ -38,8 +38,17 @@ const ContactPage = () => {
   return (
     <>
       <Helmet>
-        <title>İletişim | HavaDurumu</title>
+  <title>İletişim | Hava Durumu</title>
+  <meta name="description" content="Hava Durumu ekibiyle iletişime geçin. Destek ve geri bildirimler için bize ulaşın." />
+  <meta property="og:title" content="İletişim | Hava Durumu" />
+  <meta property="og:description" content="Hava Durumu ekibiyle iletişime geçin. Geri bildirimlerinizi paylaşın." />
+  <meta property="og:image" content="http://localhost:3000/image.jpeg" />
+  <meta property="og:url" content="http://localhost:3000/sehir/iletisim" />
+  <meta name="twitter:title" content="İletişim | Hava Durumu" />
+  <meta name="twitter:description" content="Hava Durumu ekibine ulaşmak için iletişim sayfasını ziyaret edin." />
+  <meta name="twitter:image" content="http://localhost:3000/image.jpeg" />
       </Helmet>
+
 
       <div className="contact-container">
         <h2>İletişim</h2>
