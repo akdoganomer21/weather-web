@@ -93,9 +93,9 @@ const CurrentWeatherCard = ({ data }) => {
 
   return (
     <div className="current-weather-card">
-      <div className="current-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+      <div className="current-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px", textAlign: "center" }}>
         <h2 style={{ margin: 0 }}>🌡️ Anlık Hava Durumu</h2>
-        <span style={{ fontSize: "20px", color: "blue" }}>SAAT: {currentTime}</span>
+        <span style={{ fontSize: "20px", color: "blue" }}> SAAT: {currentTime}</span>
       </div>
 
       <div className="weather-grid">
