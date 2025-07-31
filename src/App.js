@@ -1,5 +1,4 @@
 // src/App.js
-import React, { useEffect, useState } from "react";
 import { getWeather } from "./services/weatherApi";
 import Navbar from "./components/Navbar";
 const CurrentWeatherCard = lazy(() => import("./components/CurrentWeatherCard"));
