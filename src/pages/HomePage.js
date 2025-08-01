@@ -31,6 +31,9 @@ function HomePage() {
     setWeather(data);
     setLoading(false);
   };
+  const [showWarning, setShowWarning] = useState(false);
+const [warningText, setWarningText] = useState("");
+
 
   useEffect(() => {
     const normalizedParam = normalizeText(routeCity || "");
@@ -80,10 +83,18 @@ function HomePage() {
     );
     if (match) {
       navigate(`/sehir/${normalizeText(match)}`);
-    } else {
-      alert("Lütfen geçerli bir şehir adı girin.");
+      fetchWeather(match); // ⬅️ Aynı şehirse bile veriyi tazele
+      setCity(match);      // ⬅️ State’i güncelle
+      setFilteredCities([]); // 🔥 öneri listesini temizle
+    }
+     else {
+      setWeather(null);
+      setWarningText("Lütfen geçerli bir şehir adı girin.");
+      setShowWarning(true);
+      setTimeout(() => setShowWarning(false), 4000);
     }
   };
+  
 
   return (
     <div className="main-container">
@@ -157,6 +168,13 @@ function HomePage() {
   >
     Göster
   </button>
+  {showWarning && (
+  <div className="warning-banner">
+    <span>{warningText}</span>
+    <div className="warning-progress"></div>
+  </div>
+)}
+
         </form>
 
 
