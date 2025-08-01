@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# 🌤️ Türkiye Hava Durumu Uygulaması
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bu proje, Türkiye'deki tüm şehirler için **anlık**, **saatlik** ve **7 günlük hava durumu tahminleri** sunan modern ve duyarlı (responsive) bir hava durumu uygulamasıdır. Uygulama, [Open-Meteo](https://open-meteo.com/) tarafından sağlanan **gerçek verileri** kullanır ve saatlik olarak otomatik güncellenir.
 
-## Available Scripts
 
-In the project directory, you can run:
+-----------
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🔗 Canlı Yayın
 
-### `npm test`
+👉 [Uygulamayı Şimdi Görüntüle](https://hava-durumu-turkey.netlify.app)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+-----------
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚀 Özellikler
 
-### `npm run eject`
+- ✅ **Gerçek Zamanlı Hava Durumu Verisi** (Open-Meteo API üzerinden)
+- 🔍 **Şehir Arama ve Otomatik Tamamlama (Autocomplete)**
+- ⚠️ **Geçersiz şehir girişlerinde uyarı ve yönlendirme**
+- 🌐 **Dinamik Link Sistemi** (`/sehir/:city`)
+- 🧭 **404 Sayfası:** Geçersiz rota yönlendirmesi
+- 📱 **Tamamen Mobil Uyumlu Tasarım**
+- 🧠 **Akıllı URL Düzeltme ve Normalleştirme** (örn: `/isTAnBul` → `/İstanbul`)
+- 🔗 **Sosyal Medya Önizleme Desteği** (OG + Twitter kartları)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+-----------
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🧪 Kullanılan Teknolojiler
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Teknoloji       | Açıklama                        |
+|------------------|-----------------------------------|
+| React.js         | Arayüz ve bileşen yapısı          |
+| React Router v6  | Sayfa yönlendirme sistemi         |
+| Open-Meteo API   | Hava durumu verileri              |
+| Helmet           | SEO ve meta tag yönetimi          |
+| Netlify          | Yayınlama ve dağıtım platformu    |
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+-----------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## ⚙️ Projeyi Yerelde Çalıştırma
 
-### Advanced Configuration
+Aşağıdaki adımları izleyerek projeyi bilgisayarınızda çalıştırabilirsiniz:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+git clone https://github.com/akdoganomer21/weather-web.git
+cd weather-web
+npm install
+npm start
 
-### Deployment
+-----------
+## Klasöy yapısı 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+weather-web/
+├── public/
+│   ├── index.html 
+│   ├── manifest.json
+│   ├── og-image.jpg
+│   ├── location-icon.png
+│   └── robots.txt
+├── src/
+│   ├── components/ 
+│   ├── data/ 
+│   ├── pages/           
+│   ├── services/        
+│   ├── utils/           
+│   ├── App.js
+│   └── AppRoutes.js
+│   └── index.js
