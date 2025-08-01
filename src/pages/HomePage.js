@@ -36,7 +36,6 @@ function HomePage() {
     const normalizedParam = normalizeText(routeCity || "");
   
     if (!routeCity) {
-      // Eğer URL boşsa, Diyarbakır’a yönlendir
       navigate("/sehir/diyarbakir", { replace: true });
       return;
     }
@@ -48,11 +47,13 @@ function HomePage() {
     if (matchedCity) {
       setCity(matchedCity);
       setInput(matchedCity);
-      fetchWeather(matchedCity);  // ⬅️ Bu garanti
+      fetchWeather(matchedCity);
     } else {
-      navigate("/sehir/diyarbakir", { replace: true });
+      // 🔥 Bu satır sayesinde YANLIŞ LINK girildiğinde 404 sayfasına yönlendiriliyor
+      navigate("/404", { replace: true });
     }
   }, [routeCity, navigate]);
+  
   
   
   

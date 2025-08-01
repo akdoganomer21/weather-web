@@ -1,48 +1,83 @@
 /* src/pages/NotFoundPage.css */
+
 .notfound-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: 85vh;
   background: linear-gradient(135deg, #caf0f8, #ade8f4);
-  padding: 20px;
+  padding: 32px 16px;
   text-align: center;
 }
 
+body.dark-mode .notfound-container {
+  background: linear-gradient(135deg, #0b0d17, #1e2430);
+}
+
 .notfound-content {
-  background: white;
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 48px 36px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   max-width: 480px;
   width: 100%;
+  transition: all 0.3s ease;
 }
 
-.notfound-content h1 {
-  font-size: 96px;
+body.dark-mode .notfound-content {
+  background-color: #222;
+  color: #f1f1f1;
+}
+
+.notfound-title {
+  font-size: 88px;
+  margin-bottom: 12px;
+  font-weight: 800;
   color: #0077b6;
-  margin-bottom: 10px;
-  font-weight: 700;
 }
 
-.notfound-content p {
+body.dark-mode .notfound-title {
+  color: #90e0ef;
+}
+
+.notfound-message {
   font-size: 20px;
   color: #333;
-  margin-bottom: 25px;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+body.dark-mode .notfound-message {
+  color: #ccc;
 }
 
 .notfound-btn {
   display: inline-block;
-  padding: 12px 28px;
+  padding: 14px 32px;
   background-color: #0077b6;
-  color: #fff;
-  border-radius: 8px;
+  color: #ffffff;
+  border-radius: 10px;
   text-decoration: none;
   font-size: 17px;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .notfound-btn:hover {
   background-color: #005f8e;
+  transform: scale(1.03);
+}
+
+@media (max-width: 480px) {
+  .notfound-title {
+    font-size: 64px;
+  }
+
+  .notfound-message {
+    font-size: 18px;
+  }
+
+  .notfound-content {
+    padding: 32px 20px;
+  }
 }
