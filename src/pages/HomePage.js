@@ -129,8 +129,12 @@ useEffect(() => {
 
 
       <div className="search-section">
-        <h1 className="page-title">📍 {city} Hava Durumu Bilgileri</h1>
-        <p className="page-subtitle">Şehrinizi seçin, anlık durumu ve haftalık tahmini hemen öğrenin.</p>
+        <h1 className="page-title">
+          <img
+            src="/location-icon.png"
+            alt="Konum simgesi"
+            style={{ width: "48px", height: "48px", marginRight: "-2px", verticalAlign: "middle" }}/> {city} Hava Durumu Bilgileri</h1>
+            <p className="page-subtitle">Şehrinizi seçin, anlık durumu ve haftalık tahmini hemen öğrenin.</p>
         
         <form
   onSubmit={handleSubmit}

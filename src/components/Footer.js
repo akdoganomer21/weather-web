@@ -25,14 +25,15 @@ const Footer = () => {
           <div className="footer-section contact">
             <h4>İletişim</h4>
             <p><strong>📧</strong> akdoganomer42621@gmail.com</p>
-            <p><strong>📞</strong> +90 537 204 01 91</p>
+            <p><strong>📞</strong> +90 (537) 204 01 91</p>
             <p><strong>📍</strong> Mersin Teknokent, Türkiye</p>
           </div>
         </div>
 
         <div className="footer-bottom">
+          <p className="footer-warning">⚠️ Hava durumu verileri Open-Meteo kaynaklıdır ve saatlik olarak güncellenir.</p>
           <p>© {new Date().getFullYear()} HavaDurumu. Tüm hakları saklıdır.</p>
-          <p className="footer-warning">⚠️ Bu uygulama demo amaçlıdır, resmi meteoroloji verisi içermez.</p>
+          <p>🛡️ Created by Ömer AKDOĞAN (For any inquiries or support, please feel free to contact us.)</p>
         </div>
       </footer>
     </div>
