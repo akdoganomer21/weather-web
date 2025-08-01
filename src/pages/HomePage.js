@@ -48,19 +48,22 @@ useEffect(() => {
   );
 
   if (matchedCity) {
-    // 🔥 Link düzeltici
-    if (normalizeText(matchedCity) !== normalizedParam) {
-      navigate(`/sehir/${normalizeText(matchedCity)}`, { replace: true });
-      return; // 🔁 tekrar render tetiklenmesin
+    const correctPath = `/sehir/${normalizeText(matchedCity)}`;
+    
+    // 🔥 Link yanlışsa düzelt (örneğin /sehir/iSTANbul → /sehir/istanbul)
+    if (window.location.pathname !== correctPath) {
+      navigate(correctPath, { replace: true });
+      return;
     }
 
     setCity(matchedCity);
     setInput(matchedCity);
     fetchWeather(matchedCity);
   } else {
-    navigate(`/404`, { replace: true });
+    navigate("/404", { replace: true });
   }
 }, [routeCity, navigate]);
+
 
   
   
