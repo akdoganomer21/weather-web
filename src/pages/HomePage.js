@@ -53,7 +53,6 @@ const [warningText, setWarningText] = useState("");
       fetchWeather(matchedCity);
     } else {
       // 🔥 Bu satır sayesinde YANLIŞ LINK girildiğinde 404 sayfasına yönlendiriliyor
-      navigate("/404", { replace: true });
     }
   }, [routeCity, navigate]);
   
