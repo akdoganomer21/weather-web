@@ -35,26 +35,33 @@ function HomePage() {
 const [warningText, setWarningText] = useState("");
 
 
-  useEffect(() => {
-    const normalizedParam = normalizeText(routeCity || "");
-  
-    if (!routeCity) {
-      navigate("/sehir/diyarbakir", { replace: true });
-      return;
+useEffect(() => {
+  const normalizedParam = normalizeText(routeCity || "");
+
+  if (!routeCity) {
+    navigate("/sehir/diyarbakir", { replace: true });
+    return;
+  }
+
+  const matchedCity = cities.find(
+    (c) => normalizeText(c) === normalizedParam
+  );
+
+  if (matchedCity) {
+    // 🔥 Link düzeltici
+    if (normalizeText(matchedCity) !== normalizedParam) {
+      navigate(`/sehir/${normalizeText(matchedCity)}`, { replace: true });
+      return; // 🔁 tekrar render tetiklenmesin
     }
-  
-    const matchedCity = cities.find(
-      (c) => normalizeText(c) === normalizedParam
-    );
-  
-    if (matchedCity) {
-      setCity(matchedCity);
-      setInput(matchedCity);
-      fetchWeather(matchedCity);
-    } else {
-      // 🔥 Bu satır sayesinde YANLIŞ LINK girildiğinde 404 sayfasına yönlendiriliyor
-    }
-  }, [routeCity, navigate]);
+
+    setCity(matchedCity);
+    setInput(matchedCity);
+    fetchWeather(matchedCity);
+  } else {
+    navigate(`/404`, { replace: true });
+  }
+}, [routeCity, navigate]);
+
   
   
   
