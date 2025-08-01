@@ -23,21 +23,6 @@ function HomePage() {
   const [input, setInput] = useState("Diyarbakır");
   const [filteredCities, setFilteredCities] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isDark, setIsDark] = useState(false); // Dark mode state
-  
-  const toggleDarkMode = () => {
-    const isDarkNow = document.body.classList.toggle("dark-mode");
-    setIsDark(isDarkNow);
-  
-    const toggleBtn = document.querySelector(".dark-toggle");
-    if (toggleBtn) {
-      toggleBtn.classList.add("animate");
-      setTimeout(() => {
-        toggleBtn.classList.remove("animate");
-      }, 400); // 400ms sonra animasyon sınıfını kaldır
-    }
-  };
-  
   
 
   const fetchWeather = async (cityName) => {
@@ -121,9 +106,6 @@ function HomePage() {
 
 
 
-    <button onClick={toggleDarkMode}    className="dark-toggle" title="Tema Değiştir">
-      {isDark ? "💡" : "💡"}
-    </button>
 
       <div className="search-section">
         <h1 className="page-title">📍 {city} Hava Durumu Bilgileri</h1>

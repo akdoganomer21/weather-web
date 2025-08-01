@@ -207,36 +207,3 @@ html, body {
     width: 100%;
   }
 }
-
-body.dark-mode {
-  background-color: #111;
-  color: #eee;
-}
-
-body.dark-mode .main-container {
-  background-color: #1b1b1b;
-  color: #f1f1f1;
-}
-
-.dark-toggle {
-  position: absolute;
-  top: 70px;
-  right: 24px;
-  background-color: transparent;
-  border: none;
-  font-size: 35px;
-  color: #ffc107;
-  cursor: pointer;
-  transition: transform 0.3s ease, color 0.3s ease;
-  z-index: 999;
-  transform: rotate(0deg); /* Başlangıç pozisyonu */
-}
-
-.dark-toggle.animate {
-  transform: rotate(20deg) scale(1.1);
-}
-
-body.dark-mode .dark-toggle {
-  color: #fff176;
-  text-shadow: 0 0 10px #fff176;
-}
